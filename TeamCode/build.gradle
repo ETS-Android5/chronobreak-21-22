@@ -17,5 +17,6 @@ apply from: '../build.dependencies.gradle'
 
 dependencies {
     implementation project(':FtcRobotController')
+    implementation project(path: ':cfcl')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
 }
