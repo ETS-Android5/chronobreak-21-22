@@ -5,11 +5,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 
 public abstract class RobotConfig {
-    private final HashMap<String, Module> modules = new HashMap<>();
+    private final ArrayList<Module> modules = new ArrayList<>();
     private final ArrayList<Behavior> behaviors = new ArrayList<>();
 
     private final HardwareMap hwMap;
@@ -35,22 +33,23 @@ public abstract class RobotConfig {
      */
     public void init() {
         addModules();
-        modules.forEach( (n, m) -> m.init() );
-        behaviors.forEach( b -> {} );
+        modules.forEach(Module::init);
+        behaviors.forEach(b -> {
+        });
     }
 
     /**
      * Gets a module from the robot config and returns it, or null if the module couldn't be found /
      * was the wrong type.
+     *
      * @param cls The class of the module you're expecting.
-     * @param name The name of the module you want to get.
      * @param <T> The type of the module you're expecting.
      * @return The module, or null if the module doesn't exist / is the wrong type.
      */
-    public <T extends Module> T getModule(@NotNull Class<T> cls, @NotNull String name) {
-        Module m = modules.get(name);
+    public <T extends Module> T getModule(@NotNull Class<T> cls) {
         try {
-            return cls.isInstance(m) ? cls.cast(m): null;
+            return modules.stream().filter(cls::isInstance).map(cls::cast)
+                    .findFirst().orElse(null);
         } catch (ClassCastException cce) {
             return null;
         }
@@ -67,11 +66,11 @@ public abstract class RobotConfig {
 
     /**
      * Used by subclasses to add modules to themselves.
-     * @param name The module's reference name.
+     *
      * @param mod The module to add.
      */
-    protected void addModule(@NotNull String name, @NotNull Module mod) {
-        modules.put(name, mod);
+    protected void addModule(@NotNull Module mod) {
+        modules.add(mod);
     }
 
     /**

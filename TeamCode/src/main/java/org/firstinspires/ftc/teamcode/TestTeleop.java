@@ -17,13 +17,15 @@ public class TestTeleop extends OpMode {
     public void init() {
         robot = new TestbotConfig(hardwareMap);
         robot.init();
-        robot.getModule(MecanumDriveModule.class, "drive").setSpeed(4);
+        robot.getModule(MecanumDriveModule.class).setSpeed(0.5);
     }
 
     @Override
     public void loop() {
-        Transform tr = new Transform(new Vector2(gamepad1.left_stick_x, gamepad1.left_stick_y),
+        Transform tr = new Transform(new Vector2(gamepad1.left_stick_x, -gamepad1.left_stick_y),
                 gamepad1.right_stick_x);
-        robot.getModule(MecanumDriveModule.class, "drive").setDriveDirection(tr);
+        robot.getModule(MecanumDriveModule.class).setDriveDirection(tr);
+
+        telemetry.addData("Transform: ", tr);
     }
 }

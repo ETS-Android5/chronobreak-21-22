@@ -23,16 +23,6 @@ public class MecanumDriveModule extends DriveModule {
         rightBack = getHardwareMap().dcMotor.get(rb);
     }
 
-    @Override
-    public void init() {
-
-    }
-
-    @Override
-    public void update() {
-
-    }
-
     public void setSpeed(double s) {
         speed = s;
     }
@@ -46,14 +36,7 @@ public class MecanumDriveModule extends DriveModule {
 
     @Override
     public void setDriveDirection(@NotNull Transform t) {
-        // Calculate length of drive vector as well as angle
-        double l = t.offset.len();
-        double wt = t.offset.angle() - Math.PI / 4; // Minus pi/4 (45 deg) because this is the wheel
-        // rotation
-
-        double a = l * Math.sin(wt);
-        double b = l * Math.cos(wt);
-
-        driveRaw(b - t.theta, a + t.theta, a - t.theta, b + t.theta);
+        driveRaw(t.offset.y + t.offset.x + t.theta, t.offset.y - t.offset.x - t.theta,
+                t.offset.y - t.offset.x + t.theta, t.offset.y + t.offset.x - t.theta);
     }
 }

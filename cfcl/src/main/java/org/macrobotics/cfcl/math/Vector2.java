@@ -44,7 +44,7 @@ public class Vector2 {
     }
 
     public double angle() {
-        return Math.atan(y / x);
+        return Math.atan2(y, x);
     }
 
     public Vector2 add(@NotNull Vector2 other) {

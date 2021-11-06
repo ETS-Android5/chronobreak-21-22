@@ -13,7 +13,7 @@ public class TestbotConfig extends RobotConfig {
 
     @Override
     public void addModules() {
-        addModule("drive", new MecanumDriveModule(getHardwareMap(), "left_front_drive",
+        addModule(new MecanumDriveModule(getHardwareMap(), "left_front_drive",
                 "right_front_drive", "left_back_drive", "right_back_drive"));
 
         addBehavior(new EncoderDriveBehavior());
