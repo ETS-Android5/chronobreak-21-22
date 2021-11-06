@@ -2,8 +2,9 @@ package org.macrobotics.cfcl.robot;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.Set;
 
 public abstract class Behavior {
-    public @NotNull abstract List<Class<? extends Module>> getRequiredModules();
+    public @NotNull
+    abstract Set<Class<? extends Module>> getRequiredModules();
 }
