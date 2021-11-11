@@ -6,6 +6,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+/**
+ * A class representing the robot configuration - the set of modules and behaviors that make up a
+ * given robot.
+ */
 public abstract class RobotConfig {
     private final ArrayList<Module> modules = new ArrayList<>();
     private final ArrayList<Behavior> behaviors = new ArrayList<>();
@@ -55,6 +59,14 @@ public abstract class RobotConfig {
         }
     }
 
+    /**
+     * Gets a behavior from the robot config and returns it, or null if it couldn't be found / was
+     * the wrong type.
+     *
+     * @param cls The class of the behavior you're expecting.
+     * @param <T> The type of the behavior you're expecting.
+     * @return The module, or null if the behavior doesn't exist.
+     */
     public <T extends Behavior> T getBehavior(@NotNull Class<T> cls) {
         try {
             return behaviors.stream().filter(cls::isInstance).map(cls::cast)
@@ -75,6 +87,7 @@ public abstract class RobotConfig {
 
     /**
      * Used by subclasses to add behaviors to themselves.
+     *
      * @param bhv The behavior to add.
      */
     protected void addBehavior(@NotNull Behavior bhv) {

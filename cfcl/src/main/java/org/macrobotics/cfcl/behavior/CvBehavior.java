@@ -10,7 +10,10 @@ import java.util.Set;
 
 public class CvBehavior extends Behavior {
 
-    public CvBehavior() {
+    @Override
+    public void init(Set<Module> modules) {
+        super.init(modules);
+
     }
 
     @Override

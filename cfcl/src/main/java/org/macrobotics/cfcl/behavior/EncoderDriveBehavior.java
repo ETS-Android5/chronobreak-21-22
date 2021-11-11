@@ -9,6 +9,12 @@ import java.util.Collections;
 import java.util.Set;
 
 public class EncoderDriveBehavior extends Behavior {
+
+    @Override
+    public void init(Set<Module> modules) {
+        super.init(modules);
+    }
+
     @Override
     public @NotNull Set<Class<? extends Module>> getRequiredModules() {
         return Collections.singleton(DriveModule.class);
