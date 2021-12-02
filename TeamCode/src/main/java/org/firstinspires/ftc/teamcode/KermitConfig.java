@@ -6,8 +6,8 @@ import org.macrobotics.cfcl.behavior.EncoderDriveBehavior;
 import org.macrobotics.cfcl.module.MecanumDriveModule;
 import org.macrobotics.cfcl.robot.RobotConfig;
 
-public class TestbotConfig extends RobotConfig {
-    public TestbotConfig(HardwareMap h) {
+public class KermitConfig extends RobotConfig {
+    public KermitConfig(HardwareMap h) {
         super(h);
     }
 

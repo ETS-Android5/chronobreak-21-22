@@ -15,9 +15,9 @@ public class TestTeleop extends OpMode {
 
     @Override
     public void init() {
-        robot = new TestbotConfig(hardwareMap);
+        robot = new KermitConfig(hardwareMap);
         robot.init();
-        robot.getModule(MecanumDriveModule.class).setSpeed(0.5);
+        robot.getModule(MecanumDriveModule.class).setSpeed(1);
     }
 
     @Override
