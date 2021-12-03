@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.module.FourBarModule;
 import org.macrobotics.cfcl.math.Transform;
 import org.macrobotics.cfcl.math.Vector2;
 import org.macrobotics.cfcl.module.MecanumDriveModule;
@@ -26,6 +27,6 @@ public class TestTeleop extends OpMode {
                 gamepad1.right_stick_x);
         robot.getModule(MecanumDriveModule.class).setDriveDirection(tr);
 
-        telemetry.addData("Transform: ", tr);
+        robot.getModule(FourBarModule.class).move(gamepad1.right_trigger - gamepad1.left_trigger);
     }
 }
